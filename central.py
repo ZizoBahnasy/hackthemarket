@@ -328,6 +328,7 @@ testX=optstock.drop(optstock.index[0:cutat])
 
 trainingclasses = classes[:cutat]
 testclasses = classes[cutat:]
+# print(len(testclasses))
 # print(stock.head())
 
 # Use sklearn if possible to fit the model, test it, and get its accuracy. If not, implement our own NB and CPTs.
@@ -340,6 +341,13 @@ predictedclasses = NB.predict(testX)
 
 print("Accuracy:")
 print (metrics.accuracy_score(testclasses, predictedclasses))
+
+# If we implement the NB on our own:
+# 1) Training: count the number of rows with each of the 5 perc_change classes
+#              build a dictionary with all the possible values/intervals for each feature (that requires discretizing the features as well)
+#              count the occurences of each features interval in each perc_change class
+#              fit the model using the same equation as in q5 of NaiveBayes.py
+#              test it on (testX, predictedclasses) in the same way as q6
 
 
 ##$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$##
