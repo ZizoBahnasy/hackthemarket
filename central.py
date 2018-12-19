@@ -296,8 +296,6 @@ def naivebayes(ticker):
 
     trainingclasses = classes[:cutat]
     testclasses = classes[cutat:]
-    print(len(trainingclasses))
-    # print(stock.head())
 
     dicti = {'R = 0': 0, 'R = 1': 1, 'R = 2': 2, 'R = 3': 3,'R = 4': 4, 'S = 0': 5, 'S = 1': 6, 'S = 2': 7, 'S = 3': 8, 'S = 4': 9, 'M = 0': 10, 'M = 1': 11}
     nrated = []
