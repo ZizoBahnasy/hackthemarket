@@ -408,17 +408,22 @@ def naivebayes(ticker):
         predictedclasses = NB.predict(testX)
 
     implemaccu = float(accu)/float(len(deltas))
-    # print(deltas)
     print(ticker)
-    print("Accuracy of our NB implementation:")    
-    # print(testclasses)
-    print(implemaccu)
+    if (implemaccu < metrics.accuracy_score(testclasses, predictedclasses)):
+        predictions = predictedclasses
+        print (metrics.accuracy_score(testclasses, predictedclasses))
+    else:
+        predictions = deltas
+        print(implemaccu)
 
-    print("Accuracy of built-in NB:")
-    print (metrics.accuracy_score(testclasses, predictedclasses))
-
+""" Testing """
 naivebayes("NFLX") #48
 naivebayes("GOOG") #46
 naivebayes("BABA") #38.4
 naivebayes("FB") #43
 naivebayes("FDX") #46
+naivebayes("GE")
+naivebayes("GM")
+naivebayes("SPY")
+naivebayes("QQQ")
+naivebayes("BABA")
