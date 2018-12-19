@@ -293,8 +293,6 @@ def naivebayes(ticker):
     trainingY=trainingY.drop(['delta'], axis=1)
     testX=optstock.drop(optstock.index[0:cutat])
     testX = testX.drop(['delta'], axis=1)
-    # trainingX = optstock[:cutat]
-    # testX = optstock[cutat:]
 
     trainingclasses = classes[:cutat]
     testclasses = classes[cutat:]
