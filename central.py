@@ -11,6 +11,9 @@ import datetime
 from datetime import date, timedelta
 import numpy as np
 
+from sklearn import metrics
+from sklearn.naive_bayes import GaussianNB
+
 import random
 
 
@@ -286,6 +289,8 @@ def naivebayes(ticker):
     # get 80% index to divide data into training and testing sets for fitting
     cutat = int(len(optstock.index) / 10) * 8
     trainingX=optstock.drop(optstock.index[cutat:])
+    trainingY=optstock.drop(optstock.index[cutat:])
+    trainingY=trainingY.drop(['delta'], axis=1)
     testX=optstock.drop(optstock.index[0:cutat])
     testX = testX.drop(['delta'], axis=1)
     # trainingX = optstock[:cutat]
@@ -402,11 +407,19 @@ def naivebayes(ticker):
         if testclasses[i] == delta:
             accu += 1
 
+        NB = GaussianNB()
+        NB.fit(trainingY, trainingclasses)
+        predictedclasses = NB.predict(testX)
+
     implemaccu = float(accu)/float(len(deltas))
     # print(deltas)
     print(ticker)
+    print("Accuracy of our NB implementation:")    
     # print(testclasses)
     print(implemaccu)
+
+    print("Accuracy of built-in NB:")
+    print (metrics.accuracy_score(testclasses, predictedclasses))
 
 naivebayes("NFLX") #48
 naivebayes("GOOG") #46
